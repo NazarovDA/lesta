@@ -1,0 +1,41 @@
+def quick_sort(array):
+    less = []
+    equal = []
+    greater = []
+    if len(array) > 1:
+        pivot = array[0]
+        for x in array:
+            if x < pivot:
+                less.append(x)
+            elif x == pivot:
+                equal.append(x)
+            elif x > pivot:
+                greater.append(x)
+        return quick_sort(less)+equal+quick_sort(greater)
+    else:
+        return array
+    
+def merge_sort(nums):
+    if len(nums) > 1:
+        mid = len(nums)//2
+        left = nums[:mid]
+        right = nums[mid:]
+        merge_sort(left)
+        merge_sort(right)
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                nums[k] = left[i]
+                i+=1
+            else:
+                nums[k] = right[j]
+                j+=1
+            k+=1
+        while i < len(left):
+            nums[k] = left[i]
+            i+=1
+            k+=1
+        while j < len(right):
+            nums[k] = right[j]
+            j+=1
+            k+=1
